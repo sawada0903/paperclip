@@ -44,6 +44,16 @@ describe Paperclip::MediaTypeSpoofDetector do
     end
   end
 
+  it "rejects a file if named .html and is as HTML, but we're told JPG" do
+    file = File.open(fixture_file("empty.html"))
+    assert Paperclip::MediaTypeSpoofDetector.using(file, "empty.html", "image/jpg").spoofed?
+  end
+
+  it "does not reject is content_type is empty but otherwise checks out" do
+    file = File.open(fixture_file("empty.html"))
+    assert ! Paperclip::MediaTypeSpoofDetector.using(file, "empty.html", "").spoofed?
+  end
+
   it 'does allow array as :content_type_mappings' do
     begin
       Paperclip.options[:content_type_mappings] = {
