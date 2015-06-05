@@ -1,3 +1,7 @@
+New in 4.2.2:
+
+* Bug fix: Check more supplied information when checking for spoofing
+
 New in 4.2.1:
 
 * Improvement: Added `validate_media_type` options to allow/bypass spoof check
